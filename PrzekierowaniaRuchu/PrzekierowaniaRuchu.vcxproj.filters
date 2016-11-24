@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Logger">
+      <UniqueIdentifier>{6851850f-eb85-4fa6-9020-719c210a84d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DBConnection">
+      <UniqueIdentifier>{198e08ce-1e0e-4202-8b13-d00c93f02514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenCV">
+      <UniqueIdentifier>{d6da18f8-f1b6-4013-9b31-ff87aebdc3fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XmlReader">
+      <UniqueIdentifier>{b9a9a191-3700-471b-b33a-3b3037426b4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XmlReader\rapidXml">
+      <UniqueIdentifier>{022b4f27-55ee-4083-946c-569d7d80442c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XmlReader\wroclawXml">
+      <UniqueIdentifier>{ac2a7466-1e56-4e6a-befd-7ba848a60506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graph">
+      <UniqueIdentifier>{b56eb326-d6c3-4557-8d01-b385c27ea10b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PrepareData">
+      <UniqueIdentifier>{b65fa584-373a-4340-9506-b39945784be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithms">
+      <UniqueIdentifier>{be07ce04-31ab-43a4-bf5e-3d877995c4a1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="rapidXml\rapidxml_utils.hpp">
+      <Filter>Source Files\XmlReader\rapidXml</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidXml\rapidxml.hpp">
+      <Filter>Source Files\XmlReader\rapidXml</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidXml\rapidxml_iterators.hpp">
+      <Filter>Source Files\XmlReader\rapidXml</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidXml\rapidxml_print.hpp">
+      <Filter>Source Files\XmlReader\rapidXml</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlReader.h">
+      <Filter>Source Files\XmlReader</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Source Files\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="MySqlConnection.h">
+      <Filter>Source Files\DBConnection</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenCVWindow.h">
+      <Filter>Source Files\OpenCV</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Source Files\OpenCV</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphCreator.h">
+      <Filter>Source Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Source Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphNode.h">
+      <Filter>Source Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Dijkstra.h">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="Preparator.h">
+      <Filter>Source Files\PrepareData</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphEdge.h">
+      <Filter>Source Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderInclude.h">
+      <Filter>Source Files\Graph</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="wroclaw.net.xml">
+      <Filter>Source Files\XmlReader\wroclawXml</Filter>
+    </Xml>
+    <Xml Include="wroclaw.osm.xml">
+      <Filter>Source Files\XmlReader\wroclawXml</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="XmlReader.cpp">
+      <Filter>Source Files\XmlReader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source Files\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="MySqlConnection.cpp">
+      <Filter>Source Files\DBConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\OpenCV</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCVWindow.cpp">
+      <Filter>Source Files\OpenCV</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphCreator.cpp">
+      <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphNode.cpp">
+      <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Dijkstra.cpp">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="Preparator.cpp">
+      <Filter>Source Files\PrepareData</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphEdge.cpp">
+      <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
