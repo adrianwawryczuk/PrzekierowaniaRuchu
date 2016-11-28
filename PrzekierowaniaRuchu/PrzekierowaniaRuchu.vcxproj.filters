@@ -82,6 +82,9 @@
     <ClInclude Include="HeaderInclude.h">
       <Filter>Source Files\Graph</Filter>
     </ClInclude>
+    <ClInclude Include="Header1.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="wroclaw.net.xml">

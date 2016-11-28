@@ -29,3 +29,11 @@ bool isEdgeInversed(GraphEdge *edge) {
 GraphNode* Graph::getNode(int nodeId) {
 	return &graph->at(nodeId);
 }
+
+int Graph::getNodesCount() {
+	return graph->size();
+}
+
+list<GraphEdge> * Graph::getNodeEdgeList(int nodeId) {
+	return getNode(nodeId)->getEdgeList();
+}

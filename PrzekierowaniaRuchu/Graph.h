@@ -17,6 +17,8 @@ public:
 	void addNode(GraphNode);
 	void addEdgeToNodes(GraphEdge);
 	GraphNode* getNode(int);
+	int getNodesCount();
+	list<GraphEdge> * getNodeEdgeList(int);
 private:
 	map<int, GraphNode> *graph;
 };

@@ -159,6 +159,7 @@
     <ClInclude Include="GraphCreator.h" />
     <ClInclude Include="GraphEdge.h" />
     <ClInclude Include="GraphNode.h" />
+    <ClInclude Include="Header1.h" />
     <ClInclude Include="HeaderInclude.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MySqlConnection.h" />

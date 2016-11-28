@@ -1,10 +1,4 @@
-#include "XmlReader.h"
-#include "Logger.h"
-#include "Window.h"
-#include "GraphCreator.h"
-#include "Preparator.h"
-
-using namespace std;
+#include "Header1.h"
 
 void main() {
 
@@ -12,17 +6,12 @@ void main() {
 	Logger::getLogger().Log(Logger::TRACE, "Starting program");
 	
 	//readXmlFile("wroclaw.osm.xml");
-	
 	//Window();
-
 	//Preparator prep = Preparator(5, 5);
 
-	GraphCreator graphCreator = GraphCreator();
-	Graph *graph = graphCreator.getGraph();
+	Graph *graph = new GraphCreator()->getGraph();
 
-	GraphEdge *edge = &graph->getNode(145728120)->getEdgeList()->front();
-
-	cout << edge->getId() << edge->getLength() << endl;
+	Dijkstra dijkstraThread = Dijkstra(&graph);
 
 	std::system("PAUSE");
 
