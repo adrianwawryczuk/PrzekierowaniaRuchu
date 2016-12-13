@@ -4,16 +4,18 @@ Logger::Logger()
 {
 	logging::add_file_log
 	(
-		keywords::file_name ="LOG_przekierowaniaRuchu_%N.log",  /*< file name pattern >*/
-		keywords::rotation_size = 10 * 1024 * 1024,             /*< rotate files every 10 MiB... >*/
-		keywords::format = "[%TimeStamp%]: %Message%"           /*< log record format >*/
+		keywords::file_name = "LOG_przekierowaniaRuchu_%N.log", /*< file name pattern >*/
+		keywords::rotation_size = 10 * 1024 * 1024, /*< rotate files every 10 MiB... >*/
+		keywords::format = "[%TimeStamp%]: %Message%" /*< log record format >*/
 	);
 
 	logging::add_common_attributes();
 }
 
-void Logger::setLogLevel(logLevels logLvl) {
-	if (!logLevelSetted) {
+void Logger::setLogLevel(logLevels logLvl)
+{
+	if (!logLevelSetted)
+	{
 		logging::core::get()->set_filter
 		(
 			logging::trivial::severity >= logLvl
@@ -25,19 +27,22 @@ void Logger::setLogLevel(logLevels logLvl) {
 	getLogger().Log(ERROR, "Log level is already set");
 }
 
-void Logger::Log(int logLvl, string message) {
-
-	if (!logLevelSetted) {
+void Logger::Log(int logLvl, string message) const
+{
+	if (!logLevelSetted)
+	{
 		getLogger().setLogLevel(WARNING);
 	}
 
-	src::severity_logger< severity_level > lg;
+	src::severity_logger<severity_level> lg;
 
-	if (logLvl < 1) {
+	if (logLvl < 1)
+	{
 		cout << message << "\n";
 	}
 
-	switch (logLvl) {
+	switch (logLvl)
+	{
 	case 0:
 		BOOST_LOG_SEV(lg, trace) << message;
 		break;
@@ -56,6 +61,6 @@ void Logger::Log(int logLvl, string message) {
 	case 5:
 		BOOST_LOG_SEV(lg, fatal) << message;
 		break;
+	default: break;
 	}
-	
 }

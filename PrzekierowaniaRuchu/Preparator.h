@@ -15,10 +15,8 @@ class Preparator
 {
 public:
 	Preparator(int, int);
-	~Preparator();
 
-	void setPartitions(int amountInRow, int amountInColumn);
-	void calculateLengthOfEdges();
-	double measure(double, double, double, double);
+	void setPartitions(int amountInRow, int amountInColumn) const;
+	void calculateLengthOfEdges() const;
+	double measure(double, double, double, double) const;
 };
-

@@ -14,16 +14,15 @@ class GraphNode
 {
 public:
 	GraphNode(int, int);
-	~GraphNode();
-	int getId();
-	int getPartitionNumber();
-	void putEdge(GraphEdge);
-	list<GraphEdge>* getEdgeList();
+	int getId() const;
+	int getPartitionNumber() const;
+	void putEdge(GraphEdge) const;
+	list<GraphEdge>* getEdgeList() const;
 
 private:
 	int id;
 	int partitionNumber;
-	list<GraphEdge> *edgeList;
+	list<GraphEdge>* edgeList;
 };
 
 #endif

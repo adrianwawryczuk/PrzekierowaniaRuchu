@@ -11,15 +11,19 @@ using namespace std;
 class Graph
 {
 public:
+	static Graph* getGraph()
+	{
+		static Graph singleton;
+		return &singleton;
+	}
+
+	void addNode(GraphNode) const;
+	static void addEdgeToNodes(GraphEdge);
+	GraphNode* getNode(int) const;
+	int getNodesCount() const;
+	list<GraphEdge>* getNodeEdgeList(int) const;
+private:
 	Graph();
 	~Graph();
-
-	void addNode(GraphNode);
-	void addEdgeToNodes(GraphEdge);
-	GraphNode* getNode(int);
-	int getNodesCount();
-	list<GraphEdge> * getNodeEdgeList(int);
-private:
-	map<int, GraphNode> *graph;
+	map<int, GraphNode>* graph;
 };
-

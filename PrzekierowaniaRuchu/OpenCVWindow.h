@@ -18,11 +18,9 @@ class OpenCVWindow
 public:
 	OpenCVWindow();
 	void openwindow();
-	void MyFilledCircle(Mat img, Point center);
-	void DrawLine(Mat img, Point start, Point end);
+	static void MyFilledCircle(Mat img, Point center);
+	static void DrawLine(Mat img, Point start, Point end);
 
 private:
 	double width, heigh;
-
 };
-

@@ -22,7 +22,8 @@ using namespace std;
 class Logger
 {
 public:
-	enum logLevels {
+	enum logLevels
+	{
 		TRACE = 0,
 		DEBUG = 1,
 		INFO = 2,
@@ -31,18 +32,17 @@ public:
 		FATAL = 5
 	};
 
-	static Logger &getLogger() {
+	static Logger& getLogger()
+	{
 		static Logger singleton;
 		return singleton;
 	}
 
 	void setLogLevel(logLevels logLvl);
 
-	void Log(int logLvl, string message);
+	void Log(int logLvl, string message) const;
 private:
 	bool logLevelSetted = false;
 	Logger();
-	Logger(const Logger &);
+	Logger(const Logger&);
 };
-
-

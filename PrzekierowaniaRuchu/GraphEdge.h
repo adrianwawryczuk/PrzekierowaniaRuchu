@@ -14,21 +14,20 @@ class GraphEdge
 public:
 	GraphEdge(int, short int, GraphNode*, GraphNode*, float);
 	GraphEdge(int, short int, GraphNode* from, GraphNode* to, vector<bool>*);
-	GraphNode* getFrom();
-	GraphNode* getTo();
-	short int getDirection();
-	vector<bool>* getArcFlags();
-	int getId();
+	GraphNode* getFrom() const;
+	GraphNode* getTo() const;
+	short int getDirection() const;
+	vector<bool>* getArcFlags() const;
+	int getId() const;
 	~GraphEdge();
-	float getLength();
+	float getLength() const;
 private:
 	int id;
 	short int direction;
-	GraphNode *from;
-	GraphNode *to;
-	vector<bool> *arcFlags;
+	GraphNode* from;
+	GraphNode* to;
+	vector<bool>* arcFlags;
 	float length;
 };
 
 #endif
-

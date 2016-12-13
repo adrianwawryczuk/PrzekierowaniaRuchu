@@ -8,18 +8,13 @@ using namespace sql;
 class GraphCreator
 {
 public:
-	GraphCreator();
-	~GraphCreator();
-
-	Graph *getGraph();
-	ResultSet* getNodes();
-	ResultSet* getEdges();
+	static Graph* getGraph();
+	static ResultSet* getNodes();
+	static ResultSet* getEdges();
+	static Graph* createGraph();
 
 private:
-	Graph *graph;
-	Graph* createGraph();
-	ResultSet* executeMySqlQuery(string sql);
-	void setNodes(Graph *graph);
-	void setEdges(Graph *graph);
+	static ResultSet* executeMySqlQuery(string sql);
+	static void setNodes(Graph* graph);
+	static void setEdges(Graph* graph);
 };
-

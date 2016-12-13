@@ -1,19 +1,18 @@
-#include "Header1.h"
+#include "Header.h"
 
-void main() {
-
+void main()
+{
 	Logger::getLogger().setLogLevel(Logger::TRACE);
 	Logger::getLogger().Log(Logger::TRACE, "Starting program");
-	
+
 	//readXmlFile("wroclaw.osm.xml");
 	//Window();
-	//Preparator prep = Preparator(5, 5);
+	//	Preparator prep = Preparator(5, 5);
 
-	Graph *graph = new GraphCreator()->getGraph();
+	auto creator = GraphCreator();
+	auto* graph = creator.createGraph();
 
-	Dijkstra dijkstraThread = Dijkstra(&graph);
+	//Dijkstra dijkstraThread = Dijkstra(graph);
 
 	std::system("PAUSE");
-
 }
-

@@ -1,27 +1,29 @@
 #include "GraphNode.h"
 #include "GraphEdge.h"
 
-GraphNode::GraphNode(int idParm, int partitionNumberParm) {
+GraphNode::GraphNode(int idParm, int partitionNumberParm)
+{
 	id = idParm;
 	partitionNumber = partitionNumberParm;
 	edgeList = new list<GraphEdge>;
 }
 
-GraphNode::~GraphNode() {
-}
-
-int GraphNode::getId() {
+int GraphNode::getId() const
+{
 	return id;
 }
 
-int GraphNode::getPartitionNumber() {
+int GraphNode::getPartitionNumber() const
+{
 	return partitionNumber;
 }
 
-void GraphNode::putEdge(GraphEdge edge) {
+void GraphNode::putEdge(GraphEdge edge) const
+{
 	edgeList->push_back(edge);
 }
 
-list<GraphEdge>* GraphNode::getEdgeList() {
+list<GraphEdge>* GraphNode::getEdgeList() const
+{
 	return edgeList;
 }

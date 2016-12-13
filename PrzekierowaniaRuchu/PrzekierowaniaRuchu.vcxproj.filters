@@ -82,7 +82,7 @@
     <ClInclude Include="HeaderInclude.h">
       <Filter>Source Files\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="Header1.h">
+    <ClInclude Include="Header.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

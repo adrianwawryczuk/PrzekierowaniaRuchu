@@ -17,4 +17,3 @@ using namespace rapidxml;
 
 void readXmlFile(char* nazwa_pliku);
 void addLengthToEdges();
-

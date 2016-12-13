@@ -2,10 +2,8 @@
 
 Window::Window()
 {
+	auto opencvwindow = OpenCVWindow();
 
-	OpenCVWindow opencvwindow = OpenCVWindow();
-
-	thread* thr = new thread(bind(&OpenCVWindow::openwindow, &opencvwindow));
+	auto thr = new thread(bind(&OpenCVWindow::openwindow, &opencvwindow));
 	thr->join();
-
 }

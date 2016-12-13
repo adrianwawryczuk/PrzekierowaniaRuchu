@@ -1,11 +1,9 @@
 #include "Preparator.h"
 
-Preparator::Preparator(int partitionX, int partitionY) {
+Preparator::Preparator(int partitionX, int partitionY)
+{
 	setPartitions(partitionX, partitionY);
 	calculateLengthOfEdges();
-}
-
-Preparator::~Preparator() {
 }
 
 template <typename T>
@@ -16,8 +14,9 @@ std::string to_string_with_precision(const T a_value, const int n = 9)
 	return out.str();
 }
 
-void Preparator::setPartitions(int amountInRow, int amountInColumn) {
-	string *minMaxLatLon = new string[4];
+void Preparator::setPartitions(int amountInRow, int amountInColumn) const
+{
+	string* minMaxLatLon = new string[4];
 	MySqlConnection::getMySqlConnection().getMinMaxLatLon(minMaxLatLon);
 
 	long double roznicaLat = (stod(minMaxLatLon[0]) - stod(minMaxLatLon[1])) / amountInColumn;
@@ -27,15 +26,16 @@ void Preparator::setPartitions(int amountInRow, int amountInColumn) {
 
 	string sql;
 	int partitionNumber;
-	Statement *statm = MySqlConnection::getMySqlConnection().con->createStatement();
+	auto* statm = MySqlConnection::getMySqlConnection().con->createStatement();
 
-	for (int i = 0; i < amountInColumn; i++) {
-
+	for (auto i = 0; i < amountInColumn; i++)
+	{
 		downLong = stod(minMaxLatLon[2]);
 
-		for (int j = 0; j < amountInRow; j++) { 
+		for (auto j = 0; j < amountInRow; j++)
+		{
 			sql = "UPDATE node set partitionNumber = ";
-			sql += to_string_with_precision((i*amountInRow) + j);
+			sql += to_string_with_precision((i * amountInRow) + j);
 			sql += " WHERE lat >= ";
 			sql += to_string_with_precision(downLat);
 			sql += " AND lat <= ";
@@ -51,19 +51,21 @@ void Preparator::setPartitions(int amountInRow, int amountInColumn) {
 		}
 		downLat += roznicaLat;
 	}
-}	
+}
 
-void Preparator::calculateLengthOfEdges() {
-	Statement *statement = MySqlConnection::getMySqlConnection().con->createStatement();
-	Statement *statement2 = MySqlConnection::getMySqlConnection().con->createStatement();
-	Statement *statement3 = MySqlConnection::getMySqlConnection().con->createStatement();
-	Statement *statement4 = MySqlConnection::getMySqlConnection().con->createStatement();
+void Preparator::calculateLengthOfEdges() const
+{
+	auto* statement = MySqlConnection::getMySqlConnection().con->createStatement();
+	auto* statement2 = MySqlConnection::getMySqlConnection().con->createStatement();
+	auto* statement3 = MySqlConnection::getMySqlConnection().con->createStatement();
+	auto* statement4 = MySqlConnection::getMySqlConnection().con->createStatement();
 	string sql = "";
-	ResultSet *node1;
-	ResultSet *node2;
-	ResultSet *edges = statement->executeQuery("Select * from edge");
+	ResultSet* node1;
+	ResultSet* node2;
+	auto* edges = statement->executeQuery("Select * from edge");
 
-	while (edges->next()) {
+	while (edges->next())
+	{
 		sql = "Select * from node WHERE id = ";
 		sql += to_string_with_precision(edges->getInt("fromId"));
 		node1 = statement2->executeQuery(sql);
@@ -73,7 +75,7 @@ void Preparator::calculateLengthOfEdges() {
 		sql += to_string_with_precision(edges->getInt("toId"));
 		node2 = statement3->executeQuery(sql);
 		node2->next();
-		
+
 		sql = "Update edge set length = ";
 		sql += to_string_with_precision(measure(node1->getDouble("lat"), node1->getDouble("lon"), node2->getDouble("lat"), node2->getDouble("lon")));
 		sql += " WHERE id = ";
@@ -86,14 +88,15 @@ void Preparator::calculateLengthOfEdges() {
 	}
 }
 
-double Preparator::measure(double lat1, double lon1, double lat2, double lon2) {
-	double R = 6378.137; // Radius of earth in KM
-	double dLat = lat2 * M_PI / 180 - lat1 * M_PI / 180;
-	double dLon = lon2 * M_PI / 180 - lon1 * M_PI / 180;
-	double a = sin(dLat / 2) * sin(dLat / 2) +
+double Preparator::measure(double lat1, double lon1, double lat2, double lon2) const
+{
+	auto R = 6378.137; // Radius of earth in KM
+	auto dLat = lat2 * M_PI / 180 - lat1 * M_PI / 180;
+	auto dLon = lon2 * M_PI / 180 - lon1 * M_PI / 180;
+	auto a = sin(dLat / 2) * sin(dLat / 2) +
 		cos(lat1 * M_PI / 180) * cos(lat2 * M_PI / 180) *
 		sin(dLon / 2) * sin(dLon / 2);
-	double c = 2 * atan2(sqrt(a), sqrt(1 - a));
-	double d = R * c;
+	auto c = 2 * atan2(sqrt(a), sqrt(1 - a));
+	auto d = R * c;
 	return d * 1000; // meters
 }

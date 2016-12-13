@@ -91,11 +91,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Workspace\MySql C++ 64bit Connector\include;D:\Workspace\boost_1_61_0;D:\Workspace\OpenCV\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\MySQL\Connector.C++ 1.1\include;D:\Workspace\boost_1_61_0;D:\Workspace\OpenCV\opencv\build\include;C:\Program Files\MySQL\MySQL Server 5.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;CPPCONN_DONT_TYPEDEF_MS_TYPES_TO_C99_TYPES;HAVE_STDINT_H;CPPCONN_PUBLIC_FUNC=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>D:\Workspace\OpenCV\opencv\build\x64\vc14\lib;D:\Workspace\MySql C++ 64bit Connector\lib\opt;D:\Workspace\boost_1_61_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Workspace\OpenCV\opencv\build\x64\vc14\lib;C:\Program Files\MySQL\Connector.C++ 1.1\lib\opt;D:\Workspace\boost_1_61_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libmysql.lib;mysqlcppconn.lib;opencv_world310d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -126,14 +126,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Workspace\MySql C++ 64bit Connector\include;D:\Workspace\boost_1_61_0;D:\Workspace\OpenCV\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\MySQL\MySQL Server 5.7\include;C:\Program Files\MySQL\Connector.C++ 1.1\include;D:\Workspace\boost_1_61_0;D:\Workspace\OpenCV\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;CPPCONN_DONT_TYPEDEF_MS_TYPES_TO_C99_TYPES;HAVE_STDINT_H;CPPCONN_PUBLIC_FUNC=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>libmysql.lib;mysqlcppconn.lib;opencv_world310d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Workspace\OpenCV\opencv\build\x64\vc14\lib;D:\Workspace\MySql C++ 64bit Connector\lib\opt;D:\Workspace\boost_1_61_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Workspace\OpenCV\opencv\build\x64\vc14\lib;C:\Program Files\MySQL\MySQL Server 5.7\lib;C:\Program Files\MySQL\Connector.C++ 1.1\lib\opt;D:\Workspace\boost_1_61_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>editbin /largeaddressaware $(TargetPath)</Command>
@@ -159,7 +159,7 @@
     <ClInclude Include="GraphCreator.h" />
     <ClInclude Include="GraphEdge.h" />
     <ClInclude Include="GraphNode.h" />
-    <ClInclude Include="Header1.h" />
+    <ClInclude Include="Header.h" />
     <ClInclude Include="HeaderInclude.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MySqlConnection.h" />
