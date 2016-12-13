@@ -27,10 +27,10 @@ public:
 		return singleton;
 	}
 
-	void getMinMaxLatLon(string* resultTable);
+	static void getMinMaxLatLon(string* resultTable);
 
-	ResultSet* getBothEdgeEnds(int startIndex);
-	Statement* createStatement();
+	ResultSet* getBothEdgeEnds(int startIndex) const;
+	static Statement* createStatement();
 
 	Connection* con;
 	PreparedStatement* prep_stmt;
@@ -38,5 +38,5 @@ private:
 	MySqlConnection();
 	MySqlConnection(const MySqlConnection&);
 	~MySqlConnection();
-	string getFirstRowArgument(ResultSet* resultSet, string colName);
+	static string getFirstRowArgument(ResultSet* resultSet, string colName);
 };

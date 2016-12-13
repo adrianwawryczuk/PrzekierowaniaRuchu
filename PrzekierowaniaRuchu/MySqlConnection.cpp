@@ -1,6 +1,6 @@
 #include "MySqlConnection.h"
 
-MySqlConnection::MySqlConnection()
+MySqlConnection::MySqlConnection(): prep_stmt(nullptr)
 {
 	try
 	{
@@ -79,7 +79,7 @@ Statement* MySqlConnection::createStatement()
 	return statement;
 }
 
-ResultSet* MySqlConnection::getBothEdgeEnds(int startIndex)
+ResultSet* MySqlConnection::getBothEdgeEnds(int startIndex) const
 {
 	auto* statement = createStatement();
 	ResultSet* result;
