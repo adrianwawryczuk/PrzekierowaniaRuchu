@@ -5,17 +5,10 @@
 
 using namespace std;
 
-class costAndIsDone
+struct costAndIsDone
 {
-public:
 	float cost;
 	bool isDone;
-
-	costAndIsDone(float a, bool b)
-	{
-		cost = a;
-		isDone = b;
-	}
 };
 
 class Dijkstra
@@ -23,18 +16,19 @@ class Dijkstra
 public:
 	Dijkstra(Graph*, int, int);
 
-	int normalDijkstra();
+	int normalDijkstra() const;
 	~Dijkstra();
 private:
 	int startNodeId, endNodeId;
 	float result = 0;
 	Graph* graph;
-	map<int, costAndIsDone*>* nodeCostValues = new map<int, costAndIsDone*>;
+	//id, tablica
+	map<int, float*>* nodeCostValues = new map<int, float*>;
+
+	//dlugosc aktualna do tego noda, id
 	multimap<float, int>* nodesToDo = new multimap<float, int>;
-	multimap<float, int>::iterator nodesToDoIterator;
-	bool isNodeDone(int id) const;
+	bool isNotNodeDone(int id) const;
 	bool isNodeExistInMap(int id) const;
-	void prepareFirstSteps();
-	void addNodeToCostMap(int id, float) const;
+	void addNode(int id, float) const;
 	void setNodeAsDone(int id) const;
 };

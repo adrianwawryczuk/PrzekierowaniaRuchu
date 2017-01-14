@@ -7,12 +7,14 @@ void main()
 
 	//readXmlFile("wroclaw.osm.xml");
 	//Window();
-	//	Preparator prep = Preparator(5, 5);
+	//Preparator prep = Preparator(5, 5);
 
-	auto creator = GraphCreator();
+	static GraphCreator creator;
+
 	auto* graph = creator.createGraph();
 
-	//Dijkstra dijkstraThread = Dijkstra(graph);
+	Dijkstra *dijkstraThread = new Dijkstra(graph, 164894918, 1190832948);
+	dijkstraThread->normalDijkstra();
 
-	std::system("PAUSE");
+	//std::system("PAUSE");
 }

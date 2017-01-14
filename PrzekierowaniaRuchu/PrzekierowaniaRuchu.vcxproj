@@ -134,10 +134,15 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>libmysql.lib;mysqlcppconn.lib;opencv_world310d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>D:\Workspace\OpenCV\opencv\build\x64\vc14\lib;C:\Program Files\MySQL\MySQL Server 5.7\lib;C:\Program Files\MySQL\Connector.C++ 1.1\lib\opt;D:\Workspace\boost_1_61_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateMapFile>true</GenerateMapFile>
+      <AssemblyDebug>true</AssemblyDebug>
     </Link>
     <PostBuildEvent>
       <Command>editbin /largeaddressaware $(TargetPath)</Command>
     </PostBuildEvent>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dijkstra.cpp" />
