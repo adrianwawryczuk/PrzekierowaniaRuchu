@@ -1,9 +1,8 @@
 ﻿#include "Dijkstra.h"
 #include <iomanip>
 
-Dijkstra::Dijkstra(Graph* graphP, int startNodeIdP, int endNodeIdP)
+Dijkstra::Dijkstra(int startNodeIdP, int endNodeIdP)
 {
-	graph = graphP;
 	startNodeId = startNodeIdP;
 	endNodeId = endNodeIdP;
 
@@ -11,7 +10,7 @@ Dijkstra::Dijkstra(Graph* graphP, int startNodeIdP, int endNodeIdP)
 	auto isDone = 0;
 
 	actualNodeCostValues->insert(pair<int, float*>(startNodeId, new float[cost , isDone]));
-	nodesPriorityQueue->insert(pair<float, int>(0.0, startNodeId));
+	nodesPriorityQueue->insert(pair<float, int>(static_cast<float>(0.0), startNodeId));
 }
 
 Dijkstra::~Dijkstra()
@@ -35,15 +34,15 @@ void Dijkstra::normalDijkstra() const
 
 		for (auto edge : *listOfEdges)
 		{
-			auto idTo = getEndOfTheEdge(&edge, actualNodeId);
+			auto directionNodeId = getEndOfTheEdge(&edge, actualNodeId);
 
-			if (!isNodeExistInMap(idTo))
+			if (!isNodeExistInMap(directionNodeId))
 			{
-				addNode(idTo, actualNodeCost + edge.getLength());
+				addNode(directionNodeId, actualNodeCost + edge.getLength());
 			}
 			else
 			{
-				auto* node = actualNodeCostValues->find(idTo)->second;
+				auto* node = actualNodeCostValues->find(directionNodeId)->second;
 				if (node[1] == 0 && node[0] > actualNodeCost + edge.getLength())
 				{
 					nodesPriorityQueue->erase(nodesPriorityQueue->find(actualNodeCost));
@@ -75,7 +74,7 @@ void Dijkstra::pringCostToEndNode(int actualNodeId, float actualNodeCost, int no
 {
 	if (actualNodeId == endNodeId)
 	{
-		cout << "ZNALEZIONO DROGE DO KONCOWEGO NODA. KOSZT: " << actualNodeCost << "\nSprawdzono wierzcholkow: " << nodesChecked << "\n";
+		cout << "\nZNALEZIONO DROGE DO KONCOWEGO NODA. KOSZT: " << actualNodeCost << "\nSprawdzono wierzcholkow: " << nodesChecked << "\n";
 
 	}
 }

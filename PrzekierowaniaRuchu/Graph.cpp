@@ -17,8 +17,20 @@ void Graph::addNode(GraphNode node) const
 
 void Graph::addEdgeToNodes(GraphEdge edge)
 {
-	edge.getFrom()->putEdge(edge);
-	edge.getTo()->putEdge(edge);
+	if(edge.getDirection() == 0)
+	{
+		edge.getFrom()->putEdge(edge);
+		edge.getTo()->putEdge(edge);
+	} 
+	else if (edge.getDirection() == 1)
+	{
+		edge.getFrom()->putEdge(edge);
+	}
+	else
+	{
+		edge.getTo()->putEdge(edge);
+	}
+	
 }
 
 bool isEdgeInversed(GraphEdge* edge)
@@ -40,10 +52,15 @@ GraphNode* Graph::getNode(int nodeId) const
 
 int Graph::getNodesCount() const
 {
-	return graph->size();
+	return static_cast<int>(graph->size());
 }
 
 list<GraphEdge>* Graph::getNodeEdgeList(int nodeId) const
 {
 	return getNode(nodeId)->getEdgeList();
+}
+
+map<int, GraphNode>* Graph::getMap() const
+{
+	return graph;
 }

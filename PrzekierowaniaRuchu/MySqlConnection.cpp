@@ -82,11 +82,20 @@ Statement* MySqlConnection::createStatement()
 ResultSet* MySqlConnection::getBothEdgeEnds(int startIndex) const
 {
 	auto* statement = createStatement();
-	ResultSet* result;
 
 	string query = "SELECT e.id, n1.lat as latFrom, n1.lon as lonFrom, n2.lat as latTo, n2.lon as lonTo FROM przekierowaniaruchu.edge as e left join node as n1	on e.fromId = n1.id	left join node as n2 on e.toId = n2.id order by e.id limit ";
 	query += to_string(startIndex);
 	query += " , 1000";
+
+	return statement->executeQuery(query);
+}
+
+ResultSet* MySqlConnection::getBoundingNodes()
+{
+	auto* statement = createStatement();
+	ResultSet* result;
+
+	string query = "SELECT id from node WHERE node.id in (Select fromId from edge WHERE (SELECT partitionNumber from node WHERE id = edge.fromId) != (SELECT partitionNumber from node WHERE id = edge.toId)) OR node.id in (Select toId from edge WHERE (SELECT partitionNumber from node WHERE id = edge.fromId) != (SELECT partitionNumber from node WHERE id = edge.toId))";
 
 	return statement->executeQuery(query);
 }

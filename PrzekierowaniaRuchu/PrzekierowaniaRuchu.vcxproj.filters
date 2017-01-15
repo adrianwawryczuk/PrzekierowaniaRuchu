@@ -32,6 +32,9 @@
     <Filter Include="Source Files\Algorithms">
       <UniqueIdentifier>{be07ce04-31ab-43a4-bf5e-3d877995c4a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ArcFlags">
+      <UniqueIdentifier>{57915546-5f05-44b7-a544-5c7f41125f80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rapidXml\rapidxml_utils.hpp">
@@ -85,6 +88,9 @@
     <ClInclude Include="Header.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="ArcFlagsCreator.h">
+      <Filter>Source Files\ArcFlags</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="wroclaw.net.xml">
@@ -130,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="GraphEdge.cpp">
       <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcFlagsCreator.cpp">
+      <Filter>Source Files\ArcFlags</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

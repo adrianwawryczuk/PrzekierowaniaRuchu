@@ -1,16 +1,18 @@
 #include "GraphEdge.h"
 
-GraphEdge::GraphEdge(int idParm, short int directionParm, GraphNode* fromParm, GraphNode* toParm, float lengthParm): arcFlags(nullptr)
+GraphEdge::GraphEdge(int idParm, short int directionParm, GraphNode* fromParm, GraphNode* toParm, float lengthParm, string arcFlagsString)
 {
 	id = idParm;
 	direction = directionParm;
 	from = fromParm;
 	to = toParm;
 	length = lengthParm;
-}
+	arcFlags = new __int8[arcFlagsString.length()];
 
-GraphEdge::GraphEdge(int, short int, GraphNode* from, GraphNode* to, vector<bool>*): id(0), direction(0), from(nullptr), to(nullptr), arcFlags(nullptr), length(0)
-{
+	for(auto index = 0; index < arcFlagsString.length(); index++)
+	{
+		arcFlags[index] = arcFlagsString[index];
+	}
 }
 
 GraphNode* GraphEdge::getFrom() const
@@ -28,7 +30,7 @@ short int GraphEdge::getDirection() const
 	return direction;
 }
 
-vector<bool>* GraphEdge::getArcFlags() const
+__int8* GraphEdge::getArcFlags() const
 {
 	return arcFlags;
 }

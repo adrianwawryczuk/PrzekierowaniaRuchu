@@ -36,12 +36,22 @@ void GraphCreator::setEdges(Graph* graph)
 {
 	auto edges = getEdges();
 	auto edgesCount = 0;
-
+	GraphNode* nodeFrom;
+	GraphNode* nodeTo;
 	while (edges->next())
 	{
-		auto* nodeFrom = graph->getNode(edges->getInt("fromId"));
-		auto* nodeTo = graph->getNode(edges->getInt("toId"));
-		graph->addEdgeToNodes(GraphEdge(edges->getInt("id"), static_cast<short int>(edges->getInt("directionCol")), nodeFrom, nodeTo, static_cast<float>(edges->getDouble("length"))));
+		nodeFrom = graph->getNode(edges->getInt("fromId"));
+		nodeTo = graph->getNode(edges->getInt("toId"));
+
+		graph->addEdgeToNodes(
+			GraphEdge(
+				edges->getInt("id"), 
+					static_cast<short int>(edges->getInt("directionCol")), 
+						nodeFrom, 
+							nodeTo,
+								static_cast<float>(edges->getDouble("length")), 
+									edges->getString("arcFlags")));
+		
 		edgesCount++;
 	}
 

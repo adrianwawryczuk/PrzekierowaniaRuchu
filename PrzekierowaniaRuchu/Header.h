@@ -6,5 +6,6 @@
 #include "Window.h"
 #include "Preparator.h"
 #include "XmlReader.h"
+#include "ArcFlagsCreator.h"
 
 using namespace std;

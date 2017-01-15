@@ -22,6 +22,7 @@ public:
 	GraphNode* getNode(int) const;
 	int getNodesCount() const;
 	list<GraphEdge>* getNodeEdgeList(int) const;
+	map<int, GraphNode>* getMap() const;
 private:
 	Graph();
 	~Graph();

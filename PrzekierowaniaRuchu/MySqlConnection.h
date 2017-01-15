@@ -30,6 +30,7 @@ public:
 	static void getMinMaxLatLon(string* resultTable);
 
 	ResultSet* getBothEdgeEnds(int startIndex) const;
+	static ResultSet* getBoundingNodes();
 	static Statement* createStatement();
 
 	Connection* con;

@@ -1,9 +1,11 @@
 #include "Preparator.h"
+#include <iomanip>
 
 Preparator::Preparator(int partitionX, int partitionY)
 {
 	setPartitions(partitionX, partitionY);
 	calculateLengthOfEdges();
+	setEmptyArcFlags(partitionX * partitionY);
 }
 
 template <typename T>
@@ -16,16 +18,16 @@ std::string to_string_with_precision(const T a_value, const int n = 9)
 
 void Preparator::setPartitions(int amountInRow, int amountInColumn) const
 {
-	string* minMaxLatLon = new string[4];
+	auto minMaxLatLon = new string[4];
 	MySqlConnection::getMySqlConnection().getMinMaxLatLon(minMaxLatLon);
 
 	long double roznicaLat = (stod(minMaxLatLon[0]) - stod(minMaxLatLon[1])) / amountInColumn;
 	long double roznicaLon = (stod(minMaxLatLon[3]) - stod(minMaxLatLon[2])) / amountInRow;
 	long double downLat = stod(minMaxLatLon[1]);
-	long double downLong = stod(minMaxLatLon[2]);
+	long double downLong;
 
 	string sql;
-	int partitionNumber;
+
 	auto* statm = MySqlConnection::getMySqlConnection().con->createStatement();
 
 	for (auto i = 0; i < amountInColumn; i++)
@@ -51,6 +53,18 @@ void Preparator::setPartitions(int amountInRow, int amountInColumn) const
 		}
 		downLat += roznicaLat;
 	}
+}
+
+void Preparator::setEmptyArcFlags(int partitionsAmount)
+{
+	auto* statm = MySqlConnection::getMySqlConnection().con->createStatement();
+	string sql = "UPDATE edge set arcFlags = ";
+
+	for(auto index = 0; index < partitionsAmount; index++)
+	{
+		sql += "2";
+	}
+	statm->executeUpdate(sql);
 }
 
 void Preparator::calculateLengthOfEdges() const
@@ -81,8 +95,6 @@ void Preparator::calculateLengthOfEdges() const
 		sql += " WHERE id = ";
 		sql += to_string_with_precision(edges->getInt("id"));
 
-		node1 = nullptr;
-		node2 = nullptr;
 		statement4->executeUpdate(sql);
 		sql = "";
 	}

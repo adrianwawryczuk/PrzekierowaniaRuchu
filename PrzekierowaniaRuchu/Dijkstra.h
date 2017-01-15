@@ -14,22 +14,22 @@ struct costAndIsDone
 class Dijkstra
 {
 public:
-	Dijkstra(Graph*, int, int);
+	Dijkstra(int, int);
 	~Dijkstra();
 
 	void normalDijkstra() const;
 
-private:
+	private:
 	int startNodeId, endNodeId;
 	float result = 0;
 
-	Graph* graph;
+	Graph* graph = Graph::getGraph();
 	map<int, float*>* actualNodeCostValues = new map<int, float*>;
 	multimap<float, int>* nodesPriorityQueue = new multimap<float, int>;
 
-	bool isNodeExistInMap(int id) const;
-	void addNode(int id, float) const;
-	void setNodeAsDone(int id) const;
+	bool isNodeExistInMap(int) const;
+	void addNode(int, float) const;
+	void setNodeAsDone(int) const;
 	void pringCostToEndNode(int, float, int) const;
-	static int getEndOfTheEdge(GraphEdge *edge, int actualNodeId);
+	static int getEndOfTheEdge(GraphEdge*, int);
 };

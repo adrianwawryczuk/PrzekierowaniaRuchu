@@ -145,6 +145,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArcFlagsCreator.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="GraphCreator.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="XmlReader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArcFlagsCreator.h" />
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="GraphCreator.h" />
