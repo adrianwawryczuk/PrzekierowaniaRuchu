@@ -1,4 +1,5 @@
-#include "Dijkstra.h"
+﻿#include "Dijkstra.h"
+#include <iomanip>
 
 Dijkstra::Dijkstra(Graph* graphP, int startNodeIdP, int endNodeIdP)
 {
@@ -9,8 +10,8 @@ Dijkstra::Dijkstra(Graph* graphP, int startNodeIdP, int endNodeIdP)
 	auto cost = 0;
 	auto isDone = 0;
 
-	nodeCostValues->insert(pair<int, float*>(startNodeId, new float[cost, isDone]));
-	nodesToDo->insert(pair<float, int>(0.0, startNodeId));
+	actualNodeCostValues->insert(pair<int, float*>(startNodeId, new float[cost , isDone]));
+	nodesPriorityQueue->insert(pair<float, int>(0.0, startNodeId));
 }
 
 Dijkstra::~Dijkstra()
@@ -18,73 +19,81 @@ Dijkstra::~Dijkstra()
 	graph = nullptr;
 }
 
-int Dijkstra::normalDijkstra() const
+void Dijkstra::normalDijkstra() const
 {
-	auto nodesToDoIterator = nodesToDo->begin();
+	auto nodesToDoIterator = nodesPriorityQueue->begin();
 	float actualNodeCost = 0;
 	auto actualNodeId = (*nodesToDoIterator).second;
+	list<GraphEdge>* listOfEdges;
+	auto nodesChecked = 0;
 
-	auto listOfEdges = new list<GraphEdge>;
-
-	while (!nodesToDo->empty() && actualNodeId != endNodeId && nodesToDoIterator != nodesToDo->end())
+	while (!nodesPriorityQueue->empty() && actualNodeId != endNodeId && nodesToDoIterator != nodesPriorityQueue->end())
 	{
 		actualNodeId = (*nodesToDoIterator).second;
 		actualNodeCost = (*nodesToDoIterator).first;
-
 		listOfEdges = graph->getNodeEdgeList(actualNodeId);
 
 		for (auto edge : *listOfEdges)
 		{
-			auto idTo = edge.getTo()->getId();
+			auto idTo = getEndOfTheEdge(&edge, actualNodeId);
 
-			if (!isNodeExistInMap(idTo) || isNotNodeDone(idTo))
+			if (!isNodeExistInMap(idTo))
 			{
-				//Node nie istnieje i pierwszy raz go spotykam, dodaje do kolejki
-				//z  jego id i suma aktualnego noda i krawedzi
 				addNode(idTo, actualNodeCost + edge.getLength());
-			} else
+			}
+			else
 			{
-				//Node istnieje wiec trzeba sprawdzic czy jest 'zrobiony'
-				//Jesli nie to mozna zwalidowac czy jego wartosc dojscia jest gorsza od proponowanej
-				auto *node = nodeCostValues->find(idTo)->second;
-				if(node[1] == 0 && node[0] > actualNodeCost + edge.getLength())
+				auto* node = actualNodeCostValues->find(idTo)->second;
+				if (node[1] == 0 && node[0] > actualNodeCost + edge.getLength())
 				{
-					//Usuwam z kolejki noda i dodaje nowego w kolejce o nowym koszcie dojscia
-					nodesToDo->erase(nodesToDo->find(actualNodeCost));
-					nodesToDo->insert(pair<float, int>(actualNodeCost + edge.getLength(), actualNodeId));
+					nodesPriorityQueue->erase(nodesPriorityQueue->find(actualNodeCost));
+					nodesPriorityQueue->insert(pair<float, int>(actualNodeCost + edge.getLength(), actualNodeId));
 					node[0] = actualNodeCost + edge.getLength();
 				}
 			}
 		}
 
 		++nodesToDoIterator;
+		++nodesChecked;
 		setNodeAsDone(actualNodeId);
 	}
 
-	cout << actualNodeCost;
-	system("Pause");
-	return result;
+	pringCostToEndNode(actualNodeId, actualNodeCost, nodesChecked);
+}
+
+int Dijkstra::getEndOfTheEdge(GraphEdge *edge, int actualNodeId)
+{
+	auto idTo = edge->getTo()->getId();
+	if (idTo == actualNodeId)
+	{
+		idTo = edge->getFrom()->getId();
+	}
+	return idTo;
+}
+
+void Dijkstra::pringCostToEndNode(int actualNodeId, float actualNodeCost, int nodesChecked) const
+{
+	if (actualNodeId == endNodeId)
+	{
+		cout << "ZNALEZIONO DROGE DO KONCOWEGO NODA. KOSZT: " << actualNodeCost << "\nSprawdzono wierzcholkow: " << nodesChecked << "\n";
+
+	}
 }
 
 bool Dijkstra::isNodeExistInMap(int id) const
 {
-	return nodeCostValues->count(id) == 1;
-}
-
-bool Dijkstra::isNotNodeDone(int id) const
-{
-	return nodeCostValues->find(id)->second[1] == 1;
+	return actualNodeCostValues->count(id) == 1;
 }
 
 void Dijkstra::addNode(int id, float lenght) const
 {
-	nodesToDo->insert(pair<float, int>(lenght, id));
-	nodeCostValues->insert(pair<int, float*>(id, new float[lenght, 0]));
+	nodesPriorityQueue->insert(pair<float, int>(lenght, id));
+	actualNodeCostValues->insert(pair<int, float*>(id, new float[lenght , 0]));
 }
 
 void Dijkstra::setNodeAsDone(int id) const
 {
-	auto *node = nodeCostValues->find(id)->second;
-	node[1] = true;
-	nodesToDo->erase(node[0]);
+	auto* node = actualNodeCostValues->find(id)->second;
+	node[1] = 1;
+	nodesPriorityQueue->erase(node[0]);
 }

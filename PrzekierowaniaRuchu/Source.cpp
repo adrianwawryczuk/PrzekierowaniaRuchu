@@ -13,8 +13,8 @@ void main()
 
 	auto* graph = creator.createGraph();
 
-	Dijkstra *dijkstraThread = new Dijkstra(graph, 164894918, 1190832948);
+	Dijkstra *dijkstraThread = new Dijkstra(graph, 1190832828, 393835966);
 	dijkstraThread->normalDijkstra();
 
-	//std::system("PAUSE");
+	std::system("PAUSE");
 }
