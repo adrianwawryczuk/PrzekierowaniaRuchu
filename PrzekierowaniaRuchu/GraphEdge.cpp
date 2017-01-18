@@ -7,11 +7,11 @@ GraphEdge::GraphEdge(int idParm, short int directionParm, GraphNode* fromParm, G
 	from = fromParm;
 	to = toParm;
 	length = lengthParm;
-	arcFlags = new __int8[arcFlagsString.length()];
+	arcFlags = new bool[arcFlagsString.length()];
 
 	for(auto index = 0; index < arcFlagsString.length(); index++)
 	{
-		arcFlags[index] = arcFlagsString[index];
+		arcFlags[index] = 0;
 	}
 }
 
@@ -30,7 +30,7 @@ short int GraphEdge::getDirection() const
 	return direction;
 }
 
-__int8* GraphEdge::getArcFlags() const
+bool* GraphEdge::getArcFlags() const
 {
 	return arcFlags;
 }
@@ -51,4 +51,9 @@ int GraphEdge::getId() const
 float GraphEdge::getLength() const
 {
 	return length;
+}
+
+void GraphEdge::setArcFlag(int partitionNumber) const
+{
+	arcFlags[partitionNumber] = true;
 }

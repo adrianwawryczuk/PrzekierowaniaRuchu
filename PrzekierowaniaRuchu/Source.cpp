@@ -19,15 +19,15 @@ void main()
 
 	//Wystartowanie watkow z algorytmem dijkstry na singletonie grafu
 	auto* threadGroup = new thread_group();
-	threadGroup->add_thread(new thread(bind(&Dijkstra::normalDijkstra, Dijkstra(1190832828, 393835966))));
+/*	threadGroup->add_thread(new thread(bind(&Dijkstra::normalDijkstra, Dijkstra(1190832828, 393835966))));
 	threadGroup->add_thread(new thread(bind(&Dijkstra::normalDijkstra, Dijkstra(1190832828, 1697563536))));
 	threadGroup->add_thread(new thread(bind(&Dijkstra::normalDijkstra, Dijkstra(260282239, 393835966))));
-	threadGroup->add_thread(new thread(bind(&Dijkstra::normalDijkstra, Dijkstra(260282239, 1697563536))));
-	threadGroup->add_thread(new thread(bind(&Dijkstra::normalDijkstra, Dijkstra(1190832828, 259421416))));
-	threadGroup->join_all();
+	threadGroup->add_thread(new thread(bind(&Dijkstra::normalDijkstra, Dijkstra(260282239, 1697563536))));*/
+	//threadGroup->add_thread(new thread(bind(&Dijkstra::normalDijkstra, Dijkstra(164894918, 1190832948, true))));
+	//threadGroup->join_all();
 
 	//Wygenerowanie arcflags dla podanej ilosci partycji
-	//ArcFlagsCreator();
+	ArcFlagsCreator();
 
 	std::system("Pause");
 }

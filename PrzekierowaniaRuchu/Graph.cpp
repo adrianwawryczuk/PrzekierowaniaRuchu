@@ -39,15 +39,17 @@ bool isEdgeInversed(GraphEdge* edge)
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	return false;
 }
 
 GraphNode* Graph::getNode(int nodeId) const
 {
-	return &graph->at(nodeId);
+	if(graph->count(nodeId) > 0)
+	{
+		return &graph->at(nodeId);
+	} 
+	return nullptr;
+	
 }
 
 int Graph::getNodesCount() const
@@ -57,7 +59,12 @@ int Graph::getNodesCount() const
 
 list<GraphEdge>* Graph::getNodeEdgeList(int nodeId) const
 {
-	return getNode(nodeId)->getEdgeList();
+	GraphNode* node = getNode(nodeId);
+	if(node)
+	{
+		return node->getEdgeList();
+	}
+	return nullptr;
 }
 
 map<int, GraphNode>* Graph::getMap() const
